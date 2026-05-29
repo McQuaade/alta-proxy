@@ -111,16 +111,18 @@ app.get('/api/users', async (req, res) => {
   } catch (e) {
     res.status(500).json({ error: e.message })
   }
+
+  }
+})
 // LPR events
 app.get('/api/lpr', async (req, res) => {
   try {
-    const data = await altaGet('/lpr')
+    const data = await altaGet('/alerts?type=lpr')
     res.json(data)
   } catch (e) {
     res.status(500).json({ error: e.message })
   }
 })
-
 // Counting areas
 app.get('/api/counting', async (req, res) => {
   try {
