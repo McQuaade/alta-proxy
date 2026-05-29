@@ -50,6 +50,17 @@ async function altaGet(path) {
 // Health check
 app.get('/', (req, res) => {
   res.json({ status: 'Alta proxy kører', host: process.env.ALTA_HOST })
+
+// Debug: test arbitrary Alta endpoint
+app.get('/api/raw/*', async (req, res) => {
+  try {
+    const altaPath = '/' + req.params[0]
+    const data = await altaGet(altaPath)
+    res.json(data)
+  } catch (e) {
+    res.status(500).json({ error: e.message })
+  }
+})
 })
 
 // Kameraer / devices
