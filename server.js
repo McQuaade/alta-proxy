@@ -100,6 +100,25 @@ app.get('/api/users', async (req, res) => {
   } catch (e) {
     res.status(500).json({ error: e.message })
   }
+// LPR events
+app.get('/api/lpr', async (req, res) => {
+  try {
+    const data = await altaGet('/lpr')
+    res.json(data)
+  } catch (e) {
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// Counting areas
+app.get('/api/counting', async (req, res) => {
+  try {
+    const data = await altaGet('/counting_areas')
+    res.json(data)
+  } catch (e) {
+    res.status(500).json({ error: e.message })
+  }
+})
 })
 
 // Webhook modtager fra Alta
